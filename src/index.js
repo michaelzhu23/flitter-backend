@@ -10,12 +10,12 @@ const resolvers = {
   },
   Mutation: {
     createPost: (parent, args, context, info) => {
-      const newLink = context.prisma.post.create({
+      const newPost = context.prisma.post.create({
         data: {
           content: args.content,
         },
       });
-      return newLink;
+      return newPost;
     },
     updatePost: (parent, args, context, info) => {
       return context.prisma.post.update({
