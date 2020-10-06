@@ -1,0 +1,25 @@
+type Query {
+  info: String!
+  feed: [Post!]!
+  post(postId: ID!): Post
+}
+
+type Mutation {
+  createPost(content: String!): Post!
+  updatePost(postId: ID!, content: String): Post
+  deletePost(postId: ID!): Post
+}
+
+type Post {
+  postId: ID!
+  content: String!
+  postedByUser: User
+}
+
+type User {
+  userId: ID!
+  userAlias: String!
+  userName: String!
+  profilePictureUrl: String
+  posts: [Post!]!
+}
