@@ -1,0 +1,25 @@
+datasource db {
+  provider = "sqlite"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Post {
+  postId          Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  content         String
+  postedByUser    User?    @relation(fields: [postedByUserId], references: [userId])
+  postedByUserId  Int?
+}
+
+model User {
+  userId              Int      @id @default(autoincrement())
+  createdAt           DateTime @default(now())
+  userAlias           String
+  userName            String   @unique
+  profilePictureUrl   String
+  posts               Post[]
+}
