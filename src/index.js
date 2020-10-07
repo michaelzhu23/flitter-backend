@@ -20,6 +20,7 @@ const resolvers = {
       const newPost = context.prisma.post.create({
         data: {
           content: args.content,
+          postedByUser: { connect: { userId: 1 } },
         },
       });
       return newPost;
