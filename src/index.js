@@ -5,7 +5,14 @@ const resolvers = {
   Query: {
     info: () => `This is the API of a Twitter Clone`,
     feed: async (parent, args, context) => {
-      return context.prisma.post.findMany();
+      return context.prisma.post.findMany({
+        orderBy: {
+          createdAt: "desc",
+        },
+        include: {
+          postedByUser: true,
+        },
+      });
     },
   },
   Mutation: {
